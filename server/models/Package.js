@@ -23,6 +23,13 @@ const packageSchema = new mongoose.Schema({
 
   status: {
     type: String,
+    enum: [
+      "pending",
+      "approved", 
+      "received", 
+      "shipped", 
+      "delivered"
+    ],
     default: "pending"
   },
 
