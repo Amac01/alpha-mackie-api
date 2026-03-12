@@ -57,3 +57,68 @@ export const approvePackage = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const getAllPackages = async (req, res) => {
+  try {
+
+    const packages = await Package.find()
+      .populate("userId", "name email");
+
+    res.json(packages);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const markReceived = async (req, res) => {
+  try {
+
+    const pkg = await Package.findById(req.params.id);
+
+    if (!pkg) {
+      return res.status(404).json({ message: "Package not found" });
+    }
+
+    pkg.status = "received";
+
+    await pkg.save();
+
+    res.json(pkg);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const markShipped = async (req, res) => {
+  try {
+
+    const pkg = await Package.findById(req.params.id);
+
+    pkg.status = "shipped";
+
+    await pkg.save();
+
+    res.json(pkg);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const markDelivered = async (req, res) => {
+  try {
+
+    const pkg = await Package.findById(req.params.id);
+
+    pkg.status = "delivered";
+
+    await pkg.save();
+
+    res.json(pkg);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
