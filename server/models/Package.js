@@ -38,6 +38,10 @@ const packageSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  trackingId: {
+    type: String,
+    unique: true
   }
 });
 

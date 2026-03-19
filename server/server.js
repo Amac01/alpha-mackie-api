@@ -8,8 +8,12 @@ import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/user.js";
 import packageRoutes from "./routes/packageRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
+import stripeWebhook from "./webhooks/stripeWebhook.js";
 
 const app = express();
+
+// ⚠️ Must come BEFORE express.json()
+app.use("/api/webhooks", stripeWebhook);
 
 // Middleware
 app.use(express.json());
