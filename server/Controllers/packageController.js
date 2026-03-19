@@ -122,3 +122,17 @@ export const markDelivered = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const markPaid = async (packageId) => {
+  const pkg = await Package.findById(packageId);
+
+  if (!pkg) {
+    throw new Error("Package not found");
+  }
+
+  pkg.status = "paid";
+
+  await pkg.save();
+
+  return pkg;
+};

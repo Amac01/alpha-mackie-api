@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import Package from "../models/Package.js";
 
+console.log("Stripe Key:", process.env.STRIPE_SECRET_KEY);
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const createCheckoutSession = async (req, res) => {
@@ -30,8 +31,10 @@ export const createCheckoutSession = async (req, res) => {
       success_url: "http://localhost:3000/payment-success",
       cancel_url: "http://localhost:3000/payment-cancel"
     });
-
+   
     res.json({ url: session.url });
+
+    console.log("Stripe Key:", process.env.STRIPE_SECRET_KEY);
 
   } catch (error) {
     res.status(500).json({ message: error.message });

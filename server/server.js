@@ -1,5 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config();
+import "dotenv/config";
 
 import express from "express";
 import morgan from "morgan";
@@ -8,6 +7,7 @@ import connectDB from "./db.js";
 import authRoutes from "./routes/authRoutes.js";
 import userRoutes from "./routes/user.js";
 import packageRoutes from "./routes/packageRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 const app = express();
 
@@ -20,6 +20,7 @@ app.use(morgan("dev"));
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/packages", packageRoutes);
+app.use("/api/payments", paymentRoutes);
 
 app.get("/", (req, res) => res.send("ALL SETUP"));
 
