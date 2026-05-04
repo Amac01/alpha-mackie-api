@@ -1,5 +1,6 @@
 import "dotenv/config";
 
+import cors from "cors";
 import express from "express";
 import morgan from "morgan";
 
@@ -12,6 +13,7 @@ import stripeWebhook from "./webhooks/stripeWebhook.js";
 
 const app = express();
 
+app.use(cors());
 // ⚠️ Must come BEFORE express.json()
 app.use("/api/webhooks", stripeWebhook);
 
