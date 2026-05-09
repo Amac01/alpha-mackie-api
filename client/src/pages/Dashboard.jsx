@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
   const [packages, setPackages] = useState([]);
@@ -21,6 +22,11 @@ export default function Dashboard() {
   return (
     <div>
       <h2>My Packages</h2>
+      <Link to="/submit-package">
+      Submit New Package
+      </Link>
+
+<br /><br />
 
       {packages.length === 0 ? (
         <p>No packages yet</p>
