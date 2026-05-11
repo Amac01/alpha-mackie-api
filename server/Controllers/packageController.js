@@ -9,11 +9,15 @@ export const createPackage = async (req, res) => {
 
   try {
 
-    const newPackage = await Package.create({
-      ...req.body,
-      userId: req.user.id
-    });
-
+    const trackingId =
+    "LS" + Math.floor(100000 + Math.random() * 900000);
+  
+  const newPackage = await Package.create({
+    ...req.body,
+    trackingId,
+    userId: req.user.id
+  });
+  
     res.status(201).json(newPackage);
 
   } catch (error) {
