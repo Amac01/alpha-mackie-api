@@ -34,6 +34,7 @@ export default function Dashboard() {
         packages.map((pkg) => (
           <div key={pkg._id} style={{ border: "1px solid #ccc", margin: "10px", padding: "10px" }}>
             <h3>{pkg.description}</h3>
+            <p>Tracking ID: {pkg.trackingId}</p>
             <p>Status: {pkg.status}</p>
             <p>Weight: {pkg.weight}kg</p>
 
