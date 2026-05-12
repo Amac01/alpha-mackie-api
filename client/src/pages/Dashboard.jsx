@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import API from "../services/api";
+import Navbar from "../components/Navbar";
 
 export default function Dashboard() {
 
@@ -30,20 +30,12 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-100">
 
       {/* NAVBAR */}
-      <nav className="bg-black text-white px-8 py-5 flex justify-between items-center">
+      <>
+        <Navbar />
 
-        <h1 className="text-3xl font-bold">
-          Leone Solutions
-        </h1>
-
-        <Link
-          to="/submit-package"
-          className="bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200"
-        >
-          Submit Package
-        </Link>
-
-      </nav>
+        <div className="p-6">
+        </div>
+      </>
 
       {/* PAGE CONTENT */}
       <div className="max-w-6xl mx-auto p-8">

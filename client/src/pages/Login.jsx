@@ -1,15 +1,18 @@
 import { useState } from "react";
-import API from "../services/api";
 import { useNavigate } from "react-router-dom";
+import API from "../services/api";
 
 export default function Login() {
-  const navigate = useNavigate(); // ✅ inside component
+
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleLogin = async () => {
+
     try {
+
       const res = await API.post("/auth/login", {
         email,
         password
@@ -17,31 +20,50 @@ export default function Login() {
 
       localStorage.setItem("token", res.data.token);
 
-      alert("Login successful");
-
       navigate("/dashboard");
 
     } catch (err) {
+
+      console.error(err);
+
       alert("Login failed");
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
 
-      <input
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <div className="bg-white p-10 rounded-2xl shadow-lg w-full max-w-md">
 
-      <input
-        placeholder="Password"
-        type="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <h2 className="text-4xl font-bold mb-8 text-center">
+          Login
+        </h2>
 
-      <button onClick={handleLogin}>Login</button>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-4"
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full border border-gray-300 rounded-lg px-4 py-3 mb-6"
+        />
+
+        <button
+          onClick={handleLogin}
+          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700"
+        >
+          Login
+        </button>
+
+      </div>
+
     </div>
   );
 }

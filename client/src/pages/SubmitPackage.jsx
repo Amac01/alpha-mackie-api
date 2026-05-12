@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import API from "../services/api";
+import Navbar from "../components/Navbar";
 
 export default function SubmitPackage() {
 
@@ -42,72 +43,61 @@ export default function SubmitPackage() {
   return (
     <div className="min-h-screen bg-gray-100">
 
-      {/* NAVBAR */}
-      <nav className="bg-black text-white px-8 py-5 flex justify-between items-center">
+      <Navbar />
 
-        <h1 className="text-3xl font-bold">
-          Leone Solutions
-        </h1>
+      <div className="max-w-2xl mx-auto p-8">
 
-        <Link
-          to="/dashboard"
-          className="bg-white text-black px-4 py-2 rounded-lg font-semibold hover:bg-gray-200"
-        >
-          Dashboard
-        </Link>
+        <div className="bg-white rounded-2xl shadow-lg p-8">
 
-      </nav>
-
-      {/* FORM */}
-      <div className="max-w-2xl mx-auto mt-12 bg-white p-10 rounded-2xl shadow-md">
-
-        <h2 className="text-4xl font-bold mb-8">
-          Submit Package
-        </h2>
-
-        <div className="space-y-5">
-
-          <input
-            name="description"
-            placeholder="Description"
-            onChange={handleChange}
-            className="w-full p-4 border rounded-lg"
-          />
-
-          <input
-            name="weight"
-            placeholder="Weight (kg)"
-            onChange={handleChange}
-            className="w-full p-4 border rounded-lg"
-          />
-
-          <input
-            name="length"
-            placeholder="Length"
-            onChange={handleChange}
-            className="w-full p-4 border rounded-lg"
-          />
-
-          <input
-            name="width"
-            placeholder="Width"
-            onChange={handleChange}
-            className="w-full p-4 border rounded-lg"
-          />
-
-          <input
-            name="height"
-            placeholder="Height"
-            onChange={handleChange}
-            className="w-full p-4 border rounded-lg"
-          />
-
-          <button
-            onClick={handleSubmit}
-            className="w-full bg-black text-white py-4 rounded-lg font-bold hover:bg-gray-800"
-          >
+          <h2 className="text-4xl font-bold mb-8">
             Submit Package
-          </button>
+          </h2>
+
+          <div className="grid gap-4">
+
+            <input
+              name="description"
+              placeholder="Description"
+              onChange={handleChange}
+              className="border border-gray-300 rounded-lg px-4 py-3"
+            />
+
+            <input
+              name="weight"
+              placeholder="Weight"
+              onChange={handleChange}
+              className="border border-gray-300 rounded-lg px-4 py-3"
+            />
+
+            <input
+              name="length"
+              placeholder="Length"
+              onChange={handleChange}
+              className="border border-gray-300 rounded-lg px-4 py-3"
+            />
+
+            <input
+              name="width"
+              placeholder="Width"
+              onChange={handleChange}
+              className="border border-gray-300 rounded-lg px-4 py-3"
+            />
+
+            <input
+              name="height"
+              placeholder="Height"
+              onChange={handleChange}
+              className="border border-gray-300 rounded-lg px-4 py-3"
+            />
+
+            <button
+              onClick={handleSubmit}
+              className="bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800"
+            >
+              Submit Package
+            </button>
+
+          </div>
 
         </div>
 
