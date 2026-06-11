@@ -2,6 +2,7 @@
 
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
 import User from "../models/User.js";
 
 export const register = async (req, res) => {
@@ -50,4 +51,29 @@ export const login = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
+};
+
+export  const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.status(404).json({
+       message: "User not found" 
+      });
+  }
+
+  const resetToken = crypto
+    .randomBytes(20)
+    .toString("hex");
+  
+  user.resetPasswordToken = resetToken;
+  user.resetPasswordExpires = Date.now() + 3600000; // 1 hour 
+
+  await user.save();
+
+  res.json({ 
+    message: "Password reset token generated",
+     resetToken 
+    });
 };
