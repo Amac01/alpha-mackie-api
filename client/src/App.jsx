@@ -5,6 +5,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import SubmitPackage from "./pages/SubmitPackage";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -24,6 +26,15 @@ function App() {
           path="/submit-package"
           element={<SubmitPackage />}
         />
+        <Route
+        path="/forgot-password"
+        element={<ForgotPassword />}
+      />
+
+      <Route
+        path="/reset-password"
+        element={<ResetPassword />}
+      />
 
       </Routes>
 

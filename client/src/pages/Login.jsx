@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/api";
+import { Link } from "react-router-dom";
 
 export default function Login() {
 
@@ -61,8 +62,16 @@ export default function Login() {
         >
           Login
         </button>
-
+            <div className="mt-4 text-center">
+          <Link
+            to="/forgot-password"
+            className="text-blue-600 hover:underline"
+          >
+            Forgot Password?
+          </Link>
+        </div>
       </div>
+     
 
     </div>
   );
