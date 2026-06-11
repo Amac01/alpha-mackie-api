@@ -54,6 +54,7 @@ export const login = async (req, res) => {
 };
 
 export  const forgotPassword = async (req, res) => {
+try {
   const { email } = req.body;
   const user = await User.findOne({ email });
 
@@ -64,7 +65,7 @@ export  const forgotPassword = async (req, res) => {
   }
 
   const resetToken = crypto
-    .randomBytes(20)
+    .randomBytes(32)
     .toString("hex");
   
   user.resetPasswordToken = resetToken;
@@ -76,4 +77,12 @@ export  const forgotPassword = async (req, res) => {
     message: "Password reset token generated",
      resetToken 
     });
+}
+  catch (error) {
+
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
 };
